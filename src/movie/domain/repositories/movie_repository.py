@@ -1,30 +1,30 @@
 from abc import abstractmethod
 from typing import List, Optional, Protocol
 
-from domain.entities.movie import Movie
+from src.movie.domain.entities.movie import Movie
 
 
-class MovieRepository(Protocol):
+class IMovieRepository(Protocol):
     @abstractmethod
-    def create(self, movie: Movie) -> Movie:
-        raise NotImplementedError
-
-    @abstractmethod
-    def update(self, movie: Movie) -> Optional[Movie]:
-        raise NotImplementedError
+    async def create(self, movie: Movie) -> Movie:
+        ...
 
     @abstractmethod
-    def delete(self, movie_id: str) -> bool:
-        raise NotImplementedError
+    async def update(self, movie: Movie) -> Optional[Movie]:
+        ...
 
     @abstractmethod
-    def get_by_id(self, movie_id: str) -> Optional[Movie]:
-        raise NotImplementedError
+    async def delete(self, movie_id: str) -> bool:
+        ...
 
     @abstractmethod
-    def get_by_title(self, title: str) -> Optional[Movie]:
-        raise NotImplementedError
+    async def get_by_id(self, movie_id: str) -> Optional[Movie]:
+        ...
 
     @abstractmethod
-    def get_all(self, limit: int = 10, offset: int = 0) -> List[Movie]:
-        raise NotImplementedError
+    async def get_by_title(self, title: str) -> Optional[Movie]:
+        ...
+
+    @abstractmethod
+    async def get_all(self, limit: int = 10, offset: int = 0) -> List[Movie]:
+        ...

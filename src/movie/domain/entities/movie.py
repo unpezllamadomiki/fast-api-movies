@@ -1,5 +1,5 @@
 from datetime import date
-from typing import List, Optional
+from typing import List, Optional, Dict
 
 
 class Movie:
@@ -18,6 +18,21 @@ class Movie:
         self.writer = writer
         self.actors = actors,
         self.plot = plot
+
+    def to_dict(self) -> Dict:
+        return {
+            "id": self.id,
+            "title": self.title,
+            "year": self.year,
+            "rated": self.rated,
+            "released": self.released,
+            "runtime": self.runtime,
+            "genre": self.genre,
+            "director": self.director,
+            "writer": self.writer,
+            "actors": self.actors,
+            "plot": self.plot
+        }
 
 
 
